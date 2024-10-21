@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
-namespace Exercise1
+﻿namespace Exercise1
 {
 
     public class Program
@@ -15,7 +12,7 @@ namespace Exercise1
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>(); // Aquí especificas que vas a usar la clase Startup
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }

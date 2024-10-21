@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.EntityFrameworkCore;
 using Exercise1.Context;
 using Exercise1.Services;
 
@@ -18,16 +14,15 @@ namespace Exercise1
 
         public IConfiguration Configuration { get; }
 
-        // Este método se usa para agregar los servicios al contenedor de dependencias
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
 
-            // Configurar DbContext con SQLite
+            // DbContext
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
-            // Registrar el servicio ProductService
+            // Services
             services.AddScoped<ProductService>();
 
             // Habilitar Swagger
@@ -35,7 +30,6 @@ namespace Exercise1
             services.AddSwaggerGen();
         }
 
-        // Este método se usa para configurar el middleware en la tubería de solicitud
         public void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
             if (env.IsDevelopment())
